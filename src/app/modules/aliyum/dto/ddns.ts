@@ -1,17 +1,12 @@
 import { Config } from '@alicloud/pop-core';
+import { CreateApiPropertyDoc } from '@midwayjs/swagger';
 
 export class DdnsParam {
-  // @ApiProperty({
-  //   description: 'AccessKeyId',
-  // })
+  @CreateApiPropertyDoc('AccessKeyId')
   AccessKeyId: string;
-  // @ApiProperty({
-  //   description: 'AccessKeySecret',
-  // })
+  @CreateApiPropertyDoc('AccessKeySecret')
   AccessKeySecret: string;
-  // @ApiProperty({
-  //   description: '域名',
-  // })
+  @CreateApiPropertyDoc('域名')
   Domain: string;
   DomainName: string;
   RRKeyWord: string;

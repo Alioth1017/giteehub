@@ -1,20 +1,39 @@
-import { App, Configuration } from '@midwayjs/decorator';
+
+/* eslint-disable node/no-extraneous-import */
+import 'tsconfig-paths/register';
+
+import { App, Configuration, Logger } from '@midwayjs/decorator';
+import * as swagger from '@midwayjs/swagger';
 import { ILifeCycle } from '@midwayjs/core';
+import { IMidwayLogger } from '@midwayjs/logger';
 import { Application } from 'egg';
-import * as orm from '@midwayjs/orm';
-import { join } from 'path';
+
+import { customLogger } from './app/util/custom-logger';
 
 @Configuration({
   imports: [
-    orm, // 加载 orm 组件
+    // 加载 orm 组件
+    '@midwayjs/orm',
+    // 加载swagger组件
+    {
+      component: swagger,
+      enabledEnvironment: ['local'],
+    },
   ],
-  importConfigs: [
-    join(__dirname, './config')     // 加载配置文件（eggjs 下不需要）
-  ]
 })
 export class ContainerLifeCycle implements ILifeCycle {
   @App()
   app: Application;
 
-  async onReady() {}
+  @Logger()
+  readonly logger: IMidwayLogger;
+
+  // 启动前处理
+  async onReady(): Promise<void> {
+    // 定制化日志
+    customLogger(this.logger, this.app);
+  }
+
+  // 可以在这里做些停止后处理
+  // async onStop(): Promise<void> {}
 }

@@ -1,37 +1,38 @@
-import { Inject, Controller, Provide, Query, Get } from '@midwayjs/decorator';
+import {
+  Inject,
+  Controller,
+  Provide,
+  Query,
+  Get,
+  ALL,
+} from '@midwayjs/decorator';
 import { Context } from 'egg';
 import { DdnsParam } from '../dto/ddns';
 import { DdnsService } from '../service/ddns';
+import { CreateApiDoc } from '@midwayjs/swagger';
 
 @Provide()
-@Controller('/ddns')
+@Controller('/aliyun', {
+  tagName: '阿里云',
+  description: '包含DDNS功能',
+})
 export class APIController {
-  @Inject()
-  ctx: Context;
-
   @Inject()
   ddnsService: DdnsService;
 
-  // http://127.0.0.1:7001/ddns/update?AccessKeyId=xxx&AccessKeySecret=xxx&Domain=k.alio.wang
-  @Get('/update')
-  async getUser(
-    @Query() AccessKeyId: string,
-    @Query() AccessKeySecret: string,
-    @Query() Domain: string
-  ) {
-    var param = new DdnsParam();
-    param.AccessKeyId = AccessKeyId;
-    param.AccessKeySecret = AccessKeySecret;
-    param.Domain = Domain;
-    console.log(param);
-    const domainArr = param.Domain.split('.').filter(x => x);
+  @(CreateApiDoc().summary('DDNS域名解析').description('不需要鉴权').build())
+  // http://127.0.0.1:7001/aliyun/ddns-update?AccessKeyId=xxx&AccessKeySecret=xxx&Domain=k.alio.wang
+  @Get('/ddns-update')
+  async getUser(ctx: Context, @Query(ALL) query: DdnsParam) {
+    console.log(query);
+    const domainArr = query.Domain.split('.').filter(x => x);
     if (domainArr.length > 1) {
-      param.DomainName = domainArr
+      query.DomainName = domainArr
         .slice(domainArr.length - 2, domainArr.length)
         .join('.');
-      param.RRKeyWord = domainArr.slice(0, domainArr.length - 2).join('.');
+        query.RRKeyWord = domainArr.slice(0, domainArr.length - 2).join('.');
     }
-    const user = await this.ddnsService.updateDdns(param);
-    return { success: true, message: 'OK', data: user };
+    const result = await this.ddnsService.updateDdns(query);
+    ctx.helper.success(result);
   }
 }
