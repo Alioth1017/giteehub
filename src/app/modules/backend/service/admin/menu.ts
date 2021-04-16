@@ -8,7 +8,7 @@ import { Repository, In } from 'typeorm';
 import { AdminMenuModel } from '../../model/admin-menu';
 import { CreateDTO, QueryDTO, UpdateDTO } from '../../dto/admin/menu';
 import { AdminRoleModel } from '../../model/admin-role';
-import MyError from '../../../../util/my-error';
+import MyError from '../../../base/util/my-error';
 
 @Provide()
 export class AdminMenuService {

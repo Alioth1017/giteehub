@@ -15,7 +15,7 @@ import { Context } from 'egg';
 
 import { AuthService } from '../service/auth';
 import { LoginDTO } from '../dto/auth';
-import MyError from '../../../util/my-error';
+import MyError from '../../base/util/my-error';
 
 @Provide()
 @Controller('/auth', {

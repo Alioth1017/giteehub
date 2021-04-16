@@ -8,7 +8,7 @@ import { Repository, Like, In } from 'typeorm';
 import { AdminPermissionModel } from '../../model/admin-permission';
 import { AdminRoleModel } from '../../model/admin-role';
 import { QueryDTO, CreateDTO, UpdateDTO } from '../../dto/admin/role';
-import MyError from '../../../../util/my-error';
+import MyError from '../../../base/util/my-error';
 
 @Provide()
 export class AdminRoleService {

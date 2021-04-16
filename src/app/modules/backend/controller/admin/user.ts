@@ -23,7 +23,7 @@ import {
   UpdateDTO,
   RemoveDTO,
 } from '../../dto/admin/user';
-import MyError from '../../../../util/my-error';
+import MyError from '../../../base/util/my-error';
 import { AdminRoleService } from '../../service/admin/role';
 import { AdminPermissionService } from '../../service/admin/permission';
 

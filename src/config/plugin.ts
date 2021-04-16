@@ -20,7 +20,7 @@ export const koid = {
 
 export default {
   static: false, // default is true
-  // logrotator: false, // disable when use @midwayjs/logger
+  logrotator: false, // disable when use @midwayjs/logger
   redis,
   jwt,
   koid,

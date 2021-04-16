@@ -26,7 +26,7 @@ import {
   ShowDTO,
   UpdateDTO,
 } from '../../dto/admin/menu';
-import MyError from '../../../../util/my-error';
+import MyError from '../../../base/util/my-error';
 
 @Provide()
 @Controller('/admin/menu', {

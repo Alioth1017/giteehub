@@ -24,7 +24,7 @@ import {
   ShowDTO,
   RemoveDTO,
 } from '../../dto/admin/permission';
-import MyError from '../../../../util/my-error';
+import MyError from '../../../base/util/my-error';
 
 @Provide()
 @Controller('/admin/permission', {

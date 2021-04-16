@@ -9,7 +9,7 @@ import { AdminUserModel } from '../../model/admin-user';
 import { AdminRoleModel } from '../../model/admin-role';
 import { AdminPermissionModel } from '../../model/admin-permission';
 import { QueryDTO, CreateDTO, UpdateDTO } from '../../dto/admin/user';
-import MyError from '../../../../util/my-error';
+import MyError from '../../../base/util/my-error';
 
 @Provide()
 export class AdminUserService {

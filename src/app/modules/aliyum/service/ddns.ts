@@ -1,5 +1,5 @@
 import * as assert from 'assert';
-import MyError from '../../../util/my-error';
+import MyError from '../../base/util/my-error';
 import { Provide } from '@midwayjs/decorator';
 import axios from 'axios';
 import Core = require('@alicloud/pop-core');
