@@ -117,31 +117,32 @@ export class BaseSysLoginService extends BaseService {
    * @param width 宽
    * @param height 高
    */
-  async captcha(type: string, width = 150, height = 50) {
+  async captcha(type: string, width = 150, height = 50, background = '#fff') {
     const svg = svgCaptcha.create({
       ignoreChars: 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM',
       width,
       height,
+      background,
     });
     const result = {
       captchaId: uuid(),
       data: svg.data.replace(/"/g, "'"),
     };
-    // 文字变白
-    const rpList = [
-      '#111',
-      '#222',
-      '#333',
-      '#444',
-      '#555',
-      '#666',
-      '#777',
-      '#888',
-      '#999',
-    ];
-    rpList.forEach(rp => {
-      result.data = result.data['replaceAll'](rp, '#fff');
-    });
+    // // 文字变白
+    // const rpList = [
+    //   '#111',
+    //   '#222',
+    //   '#333',
+    //   '#444',
+    //   '#555',
+    //   '#666',
+    //   '#777',
+    //   '#888',
+    //   '#999',
+    // ];
+    // rpList.forEach(rp => {
+    //   result.data = result.data['replaceAll'](rp, '#fff');
+    // });
     if (type === 'base64') {
       result.data = svgToDataURL(result.data);
     }
