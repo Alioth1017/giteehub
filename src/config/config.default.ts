@@ -40,6 +40,13 @@ export default (appInfo: EggAppInfo): DefaultConfig => {
     csrf: false,
   };
 
+  // 跨域配置
+  config.cors = {
+    origin: '*',
+    credentials: true,
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+  };
+
   // cool-admin特有的配置
   config.cool = {
     // 是否初始化模块数据库

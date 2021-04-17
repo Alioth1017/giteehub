@@ -12,6 +12,7 @@
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "egg": "^2.29.4",
+    "egg-cors": "^2.2.3",
     "egg-redis": "^2.4.0",
     "egg-scripts": "^2.13.0",
     "egg-view-nunjucks": "^2.3.0",
