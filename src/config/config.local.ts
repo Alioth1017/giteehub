@@ -6,11 +6,11 @@ export const orm: ConnectionOptions = {
   type: 'mysql',
   host: '127.0.0.1',
   port: 3306,
-  username: 'homestead',
-  password: 'TxmYxSsmY4im5HsX',
-  database: 'homestead',
+  username: 'cool',
+  password: 'XWs7PkMjNacCXaCN',
+  database: 'cool',
   synchronize: false,
-  logging: true,
+  logging: false,
 };
 
 // redis配置

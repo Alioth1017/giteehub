@@ -1,14 +1,16 @@
 import * as assert from 'assert';
-import MyError from '../../base/util/my-error';
+
 import { Provide } from '@midwayjs/decorator';
 import axios from 'axios';
 import Core = require('@alicloud/pop-core');
+
 import {
   AliClientConfig,
   AliDdnsParam,
   AliDdnsRecord,
   DdnsParam,
 } from '../dto/ddns';
+import { MyException } from '../../../comm/my-exception';
 
 @Provide()
 export class DdnsService {
@@ -26,12 +28,12 @@ export class DdnsService {
     ddnsParam.RRKeyWord = param.RRKeyWord;
     const record = await this.getCurrentDomainRecord(client, ddnsParam);
     const dnsIp = record.Value;
-    assert.ok(dnsIp, new MyError('阿里云DNS解析 域名信息查询失败', 500));
+    assert.ok(dnsIp, new MyException('阿里云DNS解析 域名信息查询失败'));
     const ip = await this.getCurrentIp();
-    assert.ok(ip, new MyError('阿里云DNS解析 本机外网IP查询失败', 500));
+    assert.ok(ip, new MyException('阿里云DNS解析 本机外网IP查询失败'));
     assert.ok(
       dnsIp !== ip,
-      new MyError(`阿里云DNS解析 DNS-IP：${dnsIp} IP：${ip} 无需更新`, 500)
+      new MyException(`阿里云DNS解析 DNS-IP：${dnsIp} IP：${ip} 无需更新`)
     );
     const updateRecord = new AliDdnsRecord();
     updateRecord.RegionId = ddnsParam.RegionId;

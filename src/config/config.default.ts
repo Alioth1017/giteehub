@@ -1,8 +1,9 @@
-import { EggAppInfo } from 'egg';
-import { ConnectionOptions } from 'typeorm';
+import * as path from 'path';
 
-import { security } from './config.unittest';
-import { DefaultConfig } from './config.types';
+import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
+import { CoolConfig } from 'midwayjs-cool-core';
+
+export type DefaultConfig = PowerPartial<EggAppConfig>;
 
 export default (appInfo: EggAppInfo): DefaultConfig => {
   const config = {} as DefaultConfig;
@@ -10,61 +11,114 @@ export default (appInfo: EggAppInfo): DefaultConfig => {
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1617624620417_7692';
 
-  // add your config here
-  config.middleware = ['jwtAuth'];
+  // 启用中间件 这里需要设置为 [] 否则CoolController设置的中间件也会无效
+  config.middleware = [];
 
+  // 模板渲染 用法 https://nunjucks.bootcss.com
+  config.view = {
+    root: [path.join(appInfo.baseDir, 'app/view')].join(','),
+    defaultViewEngine: 'nunjucks',
+    defaultExtension: '.html',
+    mapping: {
+      '.html': 'nunjucks',
+    },
+  };
+
+  // 靜態目錄及緩存設置
+  config.static = {
+    prefix: '',
+    dir: path.join(appInfo.baseDir, '../public'),
+    dynamic: true,
+    preload: false,
+    // maxAge: 31536000,
+    maxAge: 0,
+    buffer: false,
+  };
+
+  // 关闭安全校验
+  config.security = {
+    csrf: false,
+  };
+
+  // cool-admin特有的配置
+  config.cool = {
+    // 是否初始化模块数据库
+    initDB: true,
+    // 全局路由前缀
+    router: {
+      prefix: '',
+    },
+    // 单点登录
+    sso: false,
+    // jwt 生成解密token的
+    jwt: {
+      // 注意： 最好重新修改，防止破解
+      secret: 'FOAPOFALj1$0(9',
+      // token
+      token: {
+        // 2小时过期，需要用刷新token
+        expire: 2 * 3600,
+        // 15天内，如果没操作过就需要重新登录
+        refreshExpire: 24 * 3600 * 15,
+      },
+    },
+    // 分页配置
+    page: {
+      // 分页查询每页条数
+      size: 15,
+    },
+    // 文件上传
+    file: {
+      // 文件路径前缀 本地上传模式下 有效
+      domain: 'https://127.0.0.1:7001',
+    },
+  } as CoolConfig;
+
+  // 文件上传
+  config.multipart = {
+    fileSize: '100mb',
+    mode: 'file',
+    whitelist: [
+      // images
+      '.jpg',
+      '.jpeg', // image/jpeg
+      '.png', // image/png, image/x-png
+      '.gif', // image/gif
+      '.bmp', // image/bmp
+      '.wbmp', // image/vnd.wap.wbmp
+      '.webp',
+      '.tif',
+      '.psd',
+      // text
+      '.svg',
+      '.js',
+      '.jsx',
+      '.json',
+      '.css',
+      '.less',
+      '.html',
+      '.htm',
+      '.xml',
+      // tar
+      '.zip',
+      '.gz',
+      '.tgz',
+      '.gzip',
+      // video
+      '.mp3',
+      '.mp4',
+      '.avi',
+      // 证书
+      '.p12',
+      '.pem',
+    ],
+  };
+
+  // 将egg日志替换成midway
   config.midwayFeature = {
     // true 代表使用 midway logger
     // false 或者为空代表使用 egg-logger
     replaceEggLogger: true,
-  };
-
-  // 默认管理员
-  config.admin = {
-    username: 'admin',
-    password: 'admin',
-  };
-
-  // 数据库配置
-  config.orm = {
-    default: {
-      type: 'mysql',
-      host: process.env.MYSQL_HOST || '127.0.0.1',
-      port: process.env.MYSQL_HOST || 3306,
-      username: process.env.MYSQL_USER || '',
-      password: process.env.MYSQL_PASSWORD || '',
-      database: process.env.MYSQL_DATABASE || undefined,
-      synchronize: false,
-      logging: true,
-      timezone: '+08:00',
-    } as ConnectionOptions,
-  };
-
-  // redis配置
-  config.redis = {
-    client: {
-      port: +process.env.REDIS_PORT || 6379, // Redis port
-      host: process.env.REDIS_HOST || '127.0.0.1', // Redis host
-      password: process.env.REDIS_PASSWORD || '',
-      db: +process.env.REDIS_DB || 0,
-    },
-  };
-
-  // jwt配置
-  config.jwt = {
-    enable: true,
-    client: {
-      secret: 'j1$0(9', // 默认密钥，生产环境一定要更改
-    },
-    // rule https://github.com/eggjs/egg-path-matching
-    ignore: ['/auth/login', '/ping', '/swagger-u*', '/genid', '/genidHex', '/aliyun*'],
-  };
-
-  // jwt token 校验中间件(需配合jwt使用, ignore的配置与jwt一致)
-  config.jwtAuth = {
-    ignore: config.jwt.ignore,
-    redisScope: 'admin', // redis的作用域前缀
-    accessTokenExpiresIn: 60 * 60 * 24 * 3, // 签名过期时间也可写
   };
 
   // swagger文档配置
@@ -94,6 +148,5 @@ export default (appInfo: EggAppInfo): DefaultConfig => {
     },
   };
 
-  config.security = security;
   return config;
 };
