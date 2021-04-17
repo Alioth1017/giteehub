@@ -138,15 +138,5 @@ export default (appInfo: EggAppInfo): DefaultConfig => {
     },
   };
 
-  // snowflake id generator config
-  config.koid = {
-    client: {
-      koidConfig: {
-        dataCenter: 0,
-        worker: 0,
-      },
-    },
-  };
-
   return config;
 };

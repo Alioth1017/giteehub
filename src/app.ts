@@ -14,10 +14,7 @@ export default class AppBootHook {
   }
 
   // Config, plugin files have been loaded.
-  configDidLoad(): void {
-    // 增加全局x-request-id处理中间件
-    this.app.config.coreMiddleware.unshift('requestIdMiddleware');
-  }
+  configDidLoad(): void {}
 
   async serverDidReady(): Promise<void> {
     // Server is listening.

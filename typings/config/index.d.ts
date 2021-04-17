@@ -15,7 +15,6 @@ import 'egg-static';
 import 'egg-jsonp';
 import 'egg-view';
 import 'midway-schedule';
-import 'egg-koid';
 import 'egg-view-nunjucks';
 import { EggPluginItem } from 'egg';
 declare module 'egg' {
@@ -33,7 +32,6 @@ declare module 'egg' {
     jsonp?: EggPluginItem;
     view?: EggPluginItem;
     schedulePlus?: EggPluginItem;
-    koid?: EggPluginItem;
     nunjucks?: EggPluginItem;
   }
 }

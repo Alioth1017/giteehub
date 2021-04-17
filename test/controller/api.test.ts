@@ -1,6 +1,6 @@
 import { createApp, close, createHttpRequest } from '@midwayjs/mock';
 import { Framework } from '@midwayjs/web';
-import * as assert from 'assert';
+import assert = require('assert');
 
 describe('test/controller/home.test.ts', () => {
 

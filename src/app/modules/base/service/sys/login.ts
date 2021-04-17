@@ -1,4 +1,4 @@
-import * as assert from 'assert';
+import assert = require('assert');
 
 import { Inject, Provide, Config } from '@midwayjs/decorator';
 import {

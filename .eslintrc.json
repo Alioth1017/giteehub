@@ -1,7 +1,15 @@
 {
   "extends": ["./node_modules/mwts/"],
   "plugins": ["unicorn", "import"],
-  "ignorePatterns": ["node_modules", "dist", "test", "jest.config.js", "typings"],
+  "ignorePatterns": [
+    "node_modules",
+    "dist",
+    "test",
+    "jest.config.js",
+    "typings",
+    "src/app/public/**/**",
+    "src/app/view/**/**"
+  ],
   "env": {
     "jest": true
   },
@@ -35,6 +43,8 @@
         "newlines-between": "always"
       }
     ],
-    "no-console": [2, { "allow": ["warn", "error", "info"] } ]
+    "no-console": [2, { "allow": ["warn", "error", "info"] }],
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "node/no-extraneous-require": "off"
   }
 }

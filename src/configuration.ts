@@ -5,8 +5,6 @@ import { ILifeCycle } from '@midwayjs/core';
 import { IMidwayLogger } from '@midwayjs/logger';
 import { Application } from 'egg';
 
-// import { customLogger } from './app/modules/base/util/custom-logger';
-
 @Configuration({
   // 注意组件顺序 cool 有依赖orm组件， 所以必须放在，orm组件之后 cool的其他组件必须放在cool 核心组件之后
   imports: [
@@ -42,11 +40,8 @@ export class ContainerLifeCycle implements ILifeCycle {
   readonly logger: IMidwayLogger;
 
   // 启动前处理
-  async onReady(): Promise<void> {
-    // 定制化日志
-    // customLogger(this.logger, this.app);
-  }
+  async onReady(): Promise<void> {}
 
   // 可以在这里做些停止后处理
-  // async onStop(): Promise<void> {}
+  async onStop(): Promise<void> {}
 }
