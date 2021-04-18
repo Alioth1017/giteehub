@@ -60,55 +60,50 @@ export class BaseSysLoginService extends BaseService {
     // 校验验证码
     const checkV = await this.captchaCheck(captchaId, verifyCode);
     assert.ok(checkV, new CoolCommException('验证码不正确'));
-    if (checkV) {
-      const user = await this.baseSysUserEntity.findOne({ username });
-      // 校验用户
-      if (user) {
-        // 校验用户状态及密码
-        if (user.status === 0 || user.password !== md5(password)) {
-          throw new CoolCommException('账户或密码不正确~');
-        }
-      } else {
-        throw new CoolCommException('账户或密码不正确~');
-      }
-      // 校验角色
-      const roleIds = await this.baseSysRoleService.getByUser(user.id);
-      if (_.isEmpty(roleIds)) {
-        throw new CoolCommException('该用户未设置任何角色，无法登录~');
-      }
+    const user = await this.baseSysUserEntity.findOne({ username });
+    // 校验用户
+    assert.ok(user, new CoolCommException('账户或密码不正确~'));
+    // 校验用户状态及密码
+    assert.ok(
+      !(user.status === 0 || user.password !== md5(password)),
+      new CoolCommException('账户或密码不正确~')
+    );
+    // 校验角色
+    const roleIds = await this.baseSysRoleService.getByUser(user.id);
+    assert.ok(
+      !_.isEmpty(roleIds),
+      new CoolCommException('该用户未设置任何角色，无法登录~')
+    );
 
-      // 生成token
-      const { expire, refreshExpire } = this.coolConfig.jwt.token;
-      const result = {
-        expire,
-        token: await this.generateToken(user, roleIds, expire),
-        refreshExpire,
-        refreshToken: await this.generateToken(
-          user,
-          roleIds,
-          refreshExpire,
-          true
-        ),
-      };
-
-      // 将用户相关信息保存到缓存
-      const perms = await this.baseSysMenuService.getPerms(roleIds);
-      const departments = await this.baseSysDepartmentService.getByRoleIds(
+    // 生成token
+    const { expire, refreshExpire } = this.coolConfig.jwt.token;
+    const result = {
+      expire,
+      token: await this.generateToken(user, roleIds, expire),
+      refreshExpire,
+      refreshToken: await this.generateToken(
+        user,
         roleIds,
-        user.username === 'admin'
-      );
-      await this.coolCache.set(
-        `admin:department:${user.id}`,
-        JSON.stringify(departments)
-      );
-      await this.coolCache.set(`admin:perms:${user.id}`, JSON.stringify(perms));
-      await this.coolCache.set(`admin:token:${user.id}`, result.token);
-      await this.coolCache.set(`admin:token:refresh:${user.id}`, result.token);
+        refreshExpire,
+        true
+      ),
+    };
 
-      return result;
-    } else {
-      throw new CoolCommException('验证码不正确');
-    }
+    // 将用户相关信息保存到缓存
+    const perms = await this.baseSysMenuService.getPerms(roleIds);
+    const departments = await this.baseSysDepartmentService.getByRoleIds(
+      roleIds,
+      user.username === 'admin'
+    );
+    await this.coolCache.set(
+      `admin:department:${user.id}`,
+      JSON.stringify(departments)
+    );
+    await this.coolCache.set(`admin:perms:${user.id}`, JSON.stringify(perms));
+    await this.coolCache.set(`admin:token:${user.id}`, result.token);
+    await this.coolCache.set(`admin:token:refresh:${user.id}`, result.token);
+
+    return result;
   }
 
   /**
