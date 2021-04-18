@@ -66,7 +66,8 @@ export class BaseAuthorityMiddleware implements IWebMiddleware {
           const passwordV = await this.coolCache.get(
             `admin:passwordVersion:${ctx.admin.userId}`
           );
-          if (passwordV !== ctx.admin.passwordVersion) {
+          // eslint-disable-next-line eqeqeq
+          if (passwordV != ctx.admin.passwordVersion) {
             ctx.status = 401;
             ctx.body = {
               code: RESCODE.COMMFAIL,

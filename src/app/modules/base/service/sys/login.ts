@@ -8,22 +8,20 @@ import {
   CoolConfig,
   RESCODE,
 } from 'midwayjs-cool-core';
+import { LoginDTO } from '../../dto/login';
 import * as svgCaptcha from 'svg-captcha';
 import * as svgToDataURL from 'svg-to-dataurl';
 import { v1 as uuid } from 'uuid';
+import { BaseSysUserEntity } from '../../entity/sys/user';
 import { Repository } from 'typeorm';
 import { InjectEntityModel } from '@midwayjs/orm';
 import * as md5 from 'md5';
+import { BaseSysRoleService } from './role';
 import * as _ from 'lodash';
+import { BaseSysMenuService } from './menu';
+import { BaseSysDepartmentService } from './department';
 import * as jwt from 'jsonwebtoken';
 import { Context } from 'egg';
-
-import { BaseSysUserEntity } from '../../entity/sys/user';
-import { LoginDTO } from '../../dto/login';
-
-import { BaseSysDepartmentService } from './department';
-import { BaseSysMenuService } from './menu';
-import { BaseSysRoleService } from './role';
 
 /**
  * 登录

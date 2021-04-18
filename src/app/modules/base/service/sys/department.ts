@@ -2,12 +2,10 @@ import { Inject, Provide } from '@midwayjs/decorator';
 import { BaseService } from 'midwayjs-cool-core';
 import { InjectEntityModel } from '@midwayjs/orm';
 import { Repository } from 'typeorm';
-import * as _ from 'lodash';
-import { Context } from 'egg';
-
 import { BaseSysDepartmentEntity } from '../../entity/sys/department';
+import * as _ from 'lodash';
 import { BaseSysRoleDepartmentEntity } from '../../entity/sys/role_department';
-
+import { Context } from 'egg';
 import { BaseSysPermsService } from './perms';
 
 /**

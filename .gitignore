@@ -13,4 +13,7 @@ run/
 *.un~
 .tsbuildinfo
 .tsbuildinfo.*
-docs
+src/app/public/uploads/
+typings/
+.cache
+.serverless/

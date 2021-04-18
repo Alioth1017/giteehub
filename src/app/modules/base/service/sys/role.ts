@@ -2,15 +2,13 @@ import { Inject, Provide } from '@midwayjs/decorator';
 import { BaseService } from 'midwayjs-cool-core';
 import { InjectEntityModel } from '@midwayjs/orm';
 import { Repository } from 'typeorm';
-import * as _ from 'lodash';
-import { Brackets } from 'typeorm';
-
 import { BaseSysRoleEntity } from '../../entity/sys/role';
 import { BaseSysUserRoleEntity } from '../../entity/sys/user_role';
+import * as _ from 'lodash';
 import { BaseSysRoleMenuEntity } from '../../entity/sys/role_menu';
 import { BaseSysRoleDepartmentEntity } from '../../entity/sys/role_department';
-
 import { BaseSysPermsService } from './perms';
+import { Brackets } from 'typeorm';
 
 /**
  * 角色

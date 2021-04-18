@@ -11,7 +11,7 @@ export default (appInfo: EggAppInfo) => {
   config.orm = {
     default: {
       type: 'mysql',
-      host: process.env.MYSQL_HOST || 'k.alio.wang',
+      host: process.env.MYSQL_HOST || '127.0.0.1',
       port: parseInt(process.env.MYSQL_PORT || '3306'),
       username: process.env.MYSQL_USER || 'jiahui',
       password: process.env.MYSQL_PASSWORD || '3EiFzzyWDjXzHM2E',

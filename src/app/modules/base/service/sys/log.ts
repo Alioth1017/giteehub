@@ -4,11 +4,9 @@ import { InjectEntityModel } from '@midwayjs/orm';
 import { Repository } from 'typeorm';
 import { Context } from 'egg';
 import * as _ from 'lodash';
-import * as moment from 'moment';
-
 import { BaseSysLogEntity } from '../../entity/sys/log';
+import * as moment from 'moment';
 import { Utils } from '../../../../comm/utils';
-
 import { BaseSysConfService } from './conf';
 
 /**

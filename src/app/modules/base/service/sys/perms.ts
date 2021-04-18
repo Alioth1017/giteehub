@@ -1,10 +1,9 @@
 import { Inject, Provide } from '@midwayjs/decorator';
 import { BaseService, ICoolCache } from 'midwayjs-cool-core';
-import { Context } from 'egg';
-
 import { BaseSysMenuService } from './menu';
 import { BaseSysRoleService } from './role';
 import { BaseSysDepartmentService } from './department';
+import { Context } from 'egg';
 
 /**
  * 权限

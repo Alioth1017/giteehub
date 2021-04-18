@@ -2,14 +2,12 @@ import { Inject, Provide } from '@midwayjs/decorator';
 import { BaseService, ICoolCache, CoolCommException } from 'midwayjs-cool-core';
 import { InjectEntityModel } from '@midwayjs/orm';
 import { Repository } from 'typeorm';
-import * as _ from 'lodash';
-import * as md5 from 'md5';
-
-import { BaseSysUserRoleEntity } from '../../entity/sys/user_role';
 import { BaseSysUserEntity } from '../../entity/sys/user';
-import { BaseSysDepartmentEntity } from '../../entity/sys/department';
-
 import { BaseSysPermsService } from './perms';
+import * as _ from 'lodash';
+import { BaseSysUserRoleEntity } from '../../entity/sys/user_role';
+import * as md5 from 'md5';
+import { BaseSysDepartmentEntity } from '../../entity/sys/department';
 
 /**
  * 系统用户

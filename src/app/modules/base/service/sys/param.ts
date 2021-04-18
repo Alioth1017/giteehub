@@ -2,7 +2,6 @@ import { Inject, Provide } from '@midwayjs/decorator';
 import { BaseService, ICoolCache } from 'midwayjs-cool-core';
 import { InjectEntityModel } from '@midwayjs/orm';
 import { Repository } from 'typeorm';
-
 import { BaseSysParamEntity } from '../../entity/sys/param';
 
 /**

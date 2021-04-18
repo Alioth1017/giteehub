@@ -1,7 +1,6 @@
-import * as path from 'path';
-
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
 import { CoolConfig } from 'midwayjs-cool-core';
+import * as path from 'path';
 
 export type DefaultConfig = PowerPartial<EggAppConfig>;
 
