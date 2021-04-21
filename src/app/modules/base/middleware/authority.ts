@@ -34,7 +34,7 @@ export class BaseAuthorityMiddleware implements IWebMiddleware {
       if (_.startsWith(url, adminUrl)) {
         try {
           ctx.admin = jwt.verify(token, this.coolConfig.jwt.secret);
-        } catch (err) {}
+        } catch (err) { }
         // 不需要登录 无需权限校验
         if (new RegExp(`^${adminUrl}?.*/open/`).test(url)) {
           await next();
@@ -42,7 +42,7 @@ export class BaseAuthorityMiddleware implements IWebMiddleware {
         }
         if (ctx.admin) {
           // 超管拥有所有权限
-          if (ctx.admin.username === 'admin' && !ctx.admin.isRefresh) {
+          if (ctx.admin.username == 'admin' && !ctx.admin.isRefresh) {
             await next();
             return;
           }
@@ -66,7 +66,6 @@ export class BaseAuthorityMiddleware implements IWebMiddleware {
           const passwordV = await this.coolCache.get(
             `admin:passwordVersion:${ctx.admin.userId}`
           );
-          // eslint-disable-next-line eqeqeq
           if (passwordV != ctx.admin.passwordVersion) {
             ctx.status = 401;
             ctx.body = {

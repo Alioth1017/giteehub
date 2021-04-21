@@ -121,21 +121,21 @@ export class BaseSysLoginService extends BaseService {
       captchaId: uuid(),
       data: svg.data.replace(/"/g, "'"),
     };
-    // // 文字变白
-    // const rpList = [
-    //   '#111',
-    //   '#222',
-    //   '#333',
-    //   '#444',
-    //   '#555',
-    //   '#666',
-    //   '#777',
-    //   '#888',
-    //   '#999',
-    // ];
-    // rpList.forEach(rp => {
-    //   result.data = result.data['replaceAll'](rp, '#fff');
-    // });
+    // 文字变白
+    const rpList = [
+      '#111',
+      '#222',
+      '#333',
+      '#444',
+      '#555',
+      '#666',
+      '#777',
+      '#888',
+      '#999',
+    ];
+    rpList.forEach(rp => {
+      result.data = result.data['replaceAll'](rp, '#fff');
+    });
     if (type === 'base64') {
       result.data = svgToDataURL(result.data);
     }

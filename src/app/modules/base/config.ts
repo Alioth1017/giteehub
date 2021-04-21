@@ -4,7 +4,6 @@ import { ModuleConfig } from 'midwayjs-cool-core';
 /**
  * 模块的配置
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default (app: Application) => {
   return {
     // 模块名称
