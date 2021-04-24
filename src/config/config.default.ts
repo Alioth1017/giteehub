@@ -34,6 +34,13 @@ export default (appInfo: EggAppInfo): DefaultConfig => {
     buffer: false,
   };
 
+  // 修改默认的 favicon.ico serverless 环境下无用
+  // config.siteFile = {
+  //   '/favicon.ico': fs.readFileSync(
+  //     path.join(appInfo.baseDir, 'app/public/favicon.ico')
+  //   ),
+  // };
+
   // 关闭安全校验
   config.security = {
     csrf: false,

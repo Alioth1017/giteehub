@@ -1,1 +1,0 @@
-import{_ as r}from"./error-page.49e43e8d.js";import{r as e,o,c as s}from"./vendor.7411dbb7.js";import"./index.618a2b7d.js";const n={components:{ErrorPage:r}};n.render=function(r,n,t,a,d,c){const p=e("error-page");return o(),s(p,{code:500,desc:"糟糕，出了点问题"})};export default n;
