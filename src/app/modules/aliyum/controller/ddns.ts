@@ -7,7 +7,6 @@ import {
   ALL,
 } from '@midwayjs/decorator';
 import { Context } from 'egg';
-import { CreateApiDoc } from '@midwayjs/swagger';
 
 import { DdnsParam } from '../dto/ddns';
 import { DdnsService } from '../service/ddns';
@@ -21,7 +20,6 @@ export class APIController {
   @Inject()
   ddnsService: DdnsService;
 
-  @(CreateApiDoc().summary('DDNS域名解析').description('不需要鉴权').build())
   // http://127.0.0.1:7001/aliyun/ddns-update?AccessKeyId=xxx&AccessKeySecret=xxx&Domain=k.alio.wang
   @Get('/ddns-update')
   async getUser(ctx: Context, @Query(ALL) query: DdnsParam) {

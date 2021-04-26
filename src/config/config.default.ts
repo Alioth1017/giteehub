@@ -1,6 +1,7 @@
+import * as path from 'path';
+
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
 import { CoolConfig } from 'midwayjs-cool-core';
-import * as path from 'path';
 
 export type DefaultConfig = PowerPartial<EggAppConfig>;
 
@@ -132,23 +133,6 @@ export default (appInfo: EggAppInfo): DefaultConfig => {
     // true 代表使用 midway logger
     // false 或者为空代表使用 egg-logger
     replaceEggLogger: true,
-  };
-
-  // swagger文档配置
-  config.swagger = {
-    title: 'giteehub',
-    description: 'giteehub 模版工程的接口定义',
-    version: '1.0.0',
-    termsOfService: 'https://github.com/Alioth1017/giteehub',
-    contact: {
-      name: 'Alioth',
-      url: 'https://github.com/Alioth1017',
-      email: '',
-    },
-    license: {
-      name: 'MIT',
-      url: '',
-    },
   };
 
   return config;

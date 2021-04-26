@@ -1,8 +1,7 @@
 // src/schedule/hello.ts
 import { Provide, Inject, Schedule, CommonSchedule } from '@midwayjs/decorator';
-import { ILogger } from '@midwayjs/logger';
-
 import { BaseSysLogService } from '../service/sys/log';
+import { ILogger } from '@midwayjs/logger';
 
 /**
  * 日志定时任务

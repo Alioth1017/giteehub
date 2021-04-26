@@ -1,5 +1,4 @@
 import { App, Configuration, Logger } from '@midwayjs/decorator';
-import * as swagger from '@midwayjs/swagger';
 import { ILifeCycle } from '@midwayjs/core';
 // eslint-disable-next-line node/no-extraneous-import
 import { IMidwayLogger } from '@midwayjs/logger';
@@ -24,12 +23,7 @@ import { Application } from 'egg';
     // 支付宝支付
     'midwayjs-cool-alipay',
     // socket
-    // 'midwayjs-cool-socket',
-    // 加载swagger组件
-    {
-      component: swagger,
-      enabledEnvironment: ['local'],
-    },
+    // 'midwayjs-cool-socket'
   ],
 })
 export class ContainerLifeCycle implements ILifeCycle {

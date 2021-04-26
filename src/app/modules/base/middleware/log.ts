@@ -1,8 +1,7 @@
 import { Inject, Provide } from '@midwayjs/decorator';
 import { IWebMiddleware, IMidwayWebNext } from '@midwayjs/web';
-import { Context } from 'egg';
-
 import { BaseSysLogService } from '../service/sys/log';
+import { Context } from 'egg';
 
 /**
  * 日志中间件

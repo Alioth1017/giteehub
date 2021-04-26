@@ -17,4 +17,5 @@ src/app/public/uploads/
 typings/
 .cache
 .serverless/
+.vscode/launch.json
 /pnpm-lock.yaml
