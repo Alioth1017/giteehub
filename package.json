@@ -22,7 +22,7 @@
     "meeko": "^1.8.158",
     "midwayjs-cool-alipay": "^1.0.3",
     "midwayjs-cool-core": "^3.1.9",
-    "midwayjs-cool-core-fix": "^3.1.9-rc.2",
+    "midwayjs-cool-core-fix": "^3.2.2",
     "midwayjs-cool-oss": "^1.0.12",
     "midwayjs-cool-queue": "^1.0.7",
     "midwayjs-cool-redis": "^1.1.6",
