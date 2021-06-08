@@ -15,13 +15,13 @@ import { Application } from 'egg';
     // oss插件，需要到后台配置之后才有用，默认是本地上传
     'midwayjs-cool-oss',
     // 将缓存替换成redis
-    'midwayjs-cool-redis',
+    // 'midwayjs-cool-redis',
     // 队列
-    'midwayjs-cool-queue',
+    // 'midwayjs-cool-queue',
     // 微信支付
-    'midwayjs-cool-wxpay',
+    // 'midwayjs-cool-wxpay',
     // 支付宝支付
-    'midwayjs-cool-alipay',
+    // 'midwayjs-cool-alipay',
     // socket
     // 'midwayjs-cool-socket'
   ],
