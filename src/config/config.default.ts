@@ -84,7 +84,7 @@ export default (appInfo: EggAppInfo): DefaultConfig => {
     // 文件上传
     file: {
       // 文件路径前缀 本地上传模式下 有效
-      domain: 'https://127.0.0.1:7001',
+      domain: 'http://k.alio.wang:7503',
     },
   } as CoolConfig;
 

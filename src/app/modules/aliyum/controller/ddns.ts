@@ -7,6 +7,7 @@ import {
   ALL,
 } from '@midwayjs/decorator';
 import { Context } from 'egg';
+import { BaseController } from 'midwayjs-cool-core';
 
 import { DdnsParam } from '../dto/ddns';
 import { DdnsService } from '../service/ddns';
@@ -16,7 +17,7 @@ import { DdnsService } from '../service/ddns';
   tagName: '阿里云',
   description: '包含DDNS功能',
 })
-export class APIController {
+export class APIController extends BaseController {
   @Inject()
   ddnsService: DdnsService;
 
@@ -31,6 +32,6 @@ export class APIController {
       query.RRKeyWord = domainArr.slice(0, domainArr.length - 2).join('.');
     }
     const result = await this.ddnsService.updateDdns(query);
-    ctx.helper.success(result);
+    this.ok(result);
   }
 }
